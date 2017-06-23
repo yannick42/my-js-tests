@@ -19,12 +19,10 @@ function checkAvailability() {
     document.querySelector('#tile_1 > .tileContent').appendChild(span);
 }
 
-function addUIEvents() {
-
-    for(var i = 1; i <= 6; i++) {
-        addTileEvents(document.getElementById('tile_' + i));
-    }
-
+function addUIEvents(tiles) {
+    tiles.forEach(function(id) {
+        addTileEvents(document.getElementById(id));
+    });
 }
 
 function addTileEvents(tile) {
@@ -66,6 +64,8 @@ function addTileEvents(tile) {
     tile.addEventListener("touchcancel", funcCancel, false);
     tile.addEventListener("touchleave", funcCancel, false);
     tile.addEventListener("touchmove", funcMove, false); // On bouge le doigt
+
+    tile.classList.add('turnable');
 
     // clicks
     tile.addEventListener('mousedown', funcStart, false);
